@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [
+    {title: 'task 1', task: 'this is task 1'},
+    {title: 'task 2', task: 'this is task 2'}
+]
+
+function show()
+{
+        setTimeout(() => {
+            var screen = '';
+           arr.forEach((post) => {
+             screen += `<li>${post.title} </li>`
+           })
+           document.body.innerHTML = screen;
+        }, 1000);
+}
+
+function creatpost(post)
+{
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+      arr.push(post)
+
+      const error = false;
+      
+      if(!error)
+      {
+        resolve()
+      }
+      else{
+        reject('bola tha nahi manegi')
+      }
+      updateLastUserActivityTime()
+    }, 1000);
+    })
+}
+
+function deletpost()
+{
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+        arr.pop()
+        if(arr.length>0)
+        {
+            resolve(arr.pop)
+        }
+        else{
+            console.log('array is empty')
+        }
+    }, 1000)
+    })
+}
+
+function updateLastUserActivityTime()
+{
+   console.log(Date.now())
+}
+
+creatpost({title: 'task 3', task: 'this is task 3'})
+.then(() => {
+    show()
+deletpost().then(() => {
+    show()
+    deletpost().then(() => {
+        show()
+        deletpost().then(() => {
+            show()
+            deletpost().then(() => {
+                show()
+                deletpost().then(() => {
+
+                })
+            })
+        })
+    })
+})
+})
+
+creatpost({title: 'task 4', task: 'this is task 4'})
+ 
+const promise1 = Promise.resolve('Hello world');
+const promise2 = 10;
+const promise3 = new Promise((resolve, reject) => 
+setTimeout(resolve, 2000, 'Goodbye'));
+
+Promise.all([promise1,promise2,promise3]).then(values =>
+console.log(values));
+
+
+
+    </script>
+</body>
+</html>
